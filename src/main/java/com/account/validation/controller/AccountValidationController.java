@@ -40,7 +40,7 @@ public class AccountValidationController {
 	 * 
 	 */
 	@Autowired
-	AccountValidationService jpmcAccountService;
+	AccountValidationService accountService;
 
 	/**
 	 * 
@@ -55,7 +55,7 @@ public class AccountValidationController {
 	@PostMapping("validateAccount")
 	public ResponseEntity<ServiceResponse> validateAccount(@Valid @RequestBody ServiceRequest serviceRequest) throws ServiceProviderException {
 		log.info("verifying account details");
-		ServiceResponse response = jpmcAccountService.isValidBankAccount(serviceRequest);
+		ServiceResponse response = accountService.isValidBankAccount(serviceRequest);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 

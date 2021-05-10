@@ -41,7 +41,7 @@ public class AccountControllerTest {
 	private MockMvc mockMvc;
 
 	@MockBean
-	private AccountValidationService jpmcAccountService;
+	private AccountValidationService accountService;
 
 	/**
 	 * Mandatory input validation test case (Both sortCode and accountNumber is
@@ -83,7 +83,7 @@ public class AccountControllerTest {
 		providerResponses.add(provider2Status);
 		response.setResult(providerResponses);
 		
-		when(jpmcAccountService.isValidBankAccount(getValidServiceRequestNoProviders())).thenReturn(response);
+		when(accountService.isValidBankAccount(getValidServiceRequestNoProviders())).thenReturn(response);
 
 		mockMvc.perform(requestBuilder).andExpect(status().isOk()).andDo(print())
 				.andExpect(jsonPath("$.result", hasSize(2)))
